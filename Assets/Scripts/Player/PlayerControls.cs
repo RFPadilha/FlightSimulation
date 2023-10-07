@@ -62,11 +62,13 @@ public class PlayerControls : MonoBehaviour
 
     Vector3 velocity;
     Vector3 lastVelocity;
-    Vector3 localGForce;
+    public Vector3 localGForce { get; private set; }
     Vector3 localVelocity;
     Vector3 localAngularVelocity;
     float angleOfAttack;
     float angleOfAttackYaw;
+
+    AudioSource sound;
 
     private void Awake()
     {
@@ -75,7 +77,7 @@ public class PlayerControls : MonoBehaviour
         playerInputActions = new PlayerInputActions();
 
         playerInputActions.Player.Enable();
-
+        sound = GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -84,8 +86,8 @@ public class PlayerControls : MonoBehaviour
         leftAileronNatRotation = leftAileron.localRotation.eulerAngles;
         rightAileronNatRotation = rightAileron.localRotation.eulerAngles;
 
-        throttle = 100;
-        planeBody.velocity = new Vector3(0, 0, initialSpeed);
+        throttle = initialThrottle;
+        planeBody.velocity = new Vector3(0, 0, initialSpeed/3.6f);
     }
     private void Update()
     {
@@ -105,6 +107,7 @@ public class PlayerControls : MonoBehaviour
         UpdateDrag();
         UpdateAngularDrag();
         UpdateMovingParts();
+        sound.pitch = throttle/100f;
     }
 
 

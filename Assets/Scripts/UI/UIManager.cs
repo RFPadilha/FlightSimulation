@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI multiplierText;
 
     [SerializeField] TextMeshProUGUI speed;
-    [SerializeField] TextMeshProUGUI throttle;
+    [SerializeField] Slider throttle;
     [SerializeField] TextMeshProUGUI altitude;
     [SerializeField] float timeRemaining = 10;
 
@@ -27,16 +27,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI finalScore;
     [SerializeField] TextMeshProUGUI finalMultiplier;
 
-    [SerializeField] TextMeshProUGUI deathsByHighG;
-    [SerializeField] TextMeshProUGUI deathsByLowG;
+    [SerializeField] TextMeshProUGUI gForce;
 
     [SerializeField] float fadeDuration = 1f;
 
     bool timerIsRunning = false;
+    Camera cam;
 
     float prevVelocity = 0f;
     float prevThrottle = 0f;
     float prevAltitude = 0f;
+    float prevGForce = 0f;
 
     int score = 0;
     int ringCount = 0;
@@ -57,13 +58,16 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        cam = Camera.main;
         speed.text = "0km/h";
-        throttle.text = "0%";
+        throttle.value = player.throttle/100f;
         timerIsRunning = true;
         scoreText.text = score.ToString();
         multiplierText.text = "x" + multiplier.ToString();
         altitude.text = "0m";
         endGameStats.SetActive(false);
+        gForce.text = player.localGForce.magnitude.ToString("F1") + "G";
+        prevGForce = player.localGForce.magnitude;
     }
 
     void Update()
@@ -95,13 +99,18 @@ public class UIManager : MonoBehaviour
         }
         if (player.throttle != prevThrottle)
         {
-            throttle.text = player.throttle.ToString("F0") + "%";
+            throttle.value = player.throttle / 100f;
             prevThrottle = player.throttle;
         }
         if(player.transform.position.y != prevAltitude)
         {
             altitude.text = player.transform.position.y.ToString("F0") + "m";
             prevAltitude = player.transform.position.y;
+        }
+        if (player.localGForce.magnitude != prevGForce)
+        {
+            gForce.text = player.localGForce.magnitude.ToString("F1") + "G";
+            prevGForce = player.localGForce.magnitude;
         }
     }
 
@@ -129,7 +138,7 @@ public class UIManager : MonoBehaviour
         }
         UpdateUI();
     }
-
+    
     void EndGame()
     {
         ringsCollected.text = "Rings: " + ringCount.ToString();

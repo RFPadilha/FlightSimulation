@@ -1,3 +1,15 @@
-﻿{
-	"name": "Items"
+{
+    "name": "Items",
+    "references": [
+        "GUID:ae133724442f8ce41bfaa07b1988f8bb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
