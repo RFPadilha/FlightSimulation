@@ -10,17 +10,13 @@ public class RingScript : MonoBehaviour
     public delegate void IncreaseScore();
     public static event IncreaseScore increaseScore;
     [SerializeField] MeshRenderer mesh;
-    AudioSource audio;
+    AudioSource audioSource;
     //Transform player;
 
     private void Start()
     {
         //player = FindObjectOfType<PlayerControls>().transform;
-        audio = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
+        audioSource = GetComponent<AudioSource>();
         /*
         Rotate rotate = new Rotate
         {
@@ -33,6 +29,7 @@ public class RingScript : MonoBehaviour
         transform.rotation = rotate.targetRotation;
         */
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,7 +37,7 @@ public class RingScript : MonoBehaviour
         {
             //activate score change
             increaseScore?.Invoke();
-            audio.Play();
+            audioSource.Play();
             mesh.enabled = false;
             Destroy(gameObject, 2f);
         }
