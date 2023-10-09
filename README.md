@@ -27,8 +27,7 @@ Simple_Low_Poly_Plane: modelo do avião utilizado, fornecendo somente o objeto 3
 
 ## Game Objects
 
-O único prefab criado foi o anel que o jogador coleta, contendo mesh, trigger para detectar coleta, e sistema de partícula. No script do anel existe um trecho de código comentado onde originalmente seria implementada uma rotação contínua, 
-bem como orientar o anel para que estivesse voltado para o jogador, utilizando o sistema de Jobs do Unity para evitar sobrecarregar a main thread, porém, ao final da implementação julguei que não era tão impactante para a experiência de jogo.
+O único prefab criado foi o anel que o jogador coleta, contendo mesh, trigger para detectar coleta, e sistema de partícula.
 
 UIRoot: GameObject que contém todos os scripts de UI, com exceção do "MinimapScript", para fácil acesso, concentrando os scripts em um único objeto enquanto cada um possui sua própria função.
 
@@ -40,6 +39,6 @@ Player: Contém o modelo 3D do avião junto com suas partes móveis, a câmera p
 
 ## Disclaimer
 
-O plano original era desenvolver esse projeto utilizando o ECS do unity, porém estou lidando com problemas de performance na máquina atual de 2015, requerindo um tempo de espera entre 10 a 20 minutos para cada mudança de script; como o teste 
-possui um limite de tempo, julguei que esse tempo é indispensável na hora de desenvolver. Esse problema será resolvido ao final do mês com a aquisição de uma nova máquina com mais RAM e processamento.
-
+O plano original era desenvolver esse projeto utilizando o ECS do unity e maximizar a performance com o sistema de Jobs e o Burst Compiler, porém estou lidando com problemas de performance na máquina atual de 2015, requerindo um tempo de espera 
+entre 10 a 20 minutos para cada mudança de script, pelo que vi isso é um problema crescente com as versões novas do Unity que diversos desenvolvedores estão enfrentando; como o teste possui um limite de tempo, julguei que esse tempo é indispensável 
+na hora de desenvolver. Esse problema será resolvido ao final do mês com a aquisição de uma nova máquina com mais RAM e processamento.
