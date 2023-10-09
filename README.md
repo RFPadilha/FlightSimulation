@@ -11,6 +11,7 @@ reagir ao evento "assina" aquele evento, descrevendo como reagir quando o evento
 
 -Player: contém a definição do InputSystem atualizado do Unity juntamente com a classe gerada automaticamente, também contém o script dos controles do jogador, que utiliza os inputs para calcular a movimentação do avião baseado em física. 
 O script de controle da câmera permite que o jogador olhe ao redor do avião, podendo encontrar os anéis com mais facilidade, e finalmente, o script "MovePlaneParts" cuida das partes móveis do corpo do avião, sem influenciar na movimentação.
+A definição do InputSystem foi o que permitiu a configuração do suporte a teclado e gamepad simultaneamente, sem grande esforço para implementação ou mudanças.
 
 -UI: Cada script nessa definição é responsável pelo comportamento de um elemento da UI, bússola, angulação vertical, linha do horizonte, minimapa, HUD do jogador(velocidade, aceleração, altímetro e força G) compõem as informações que 
 auxiliam o jogador a navegar. ScoreCounter, Timer, EndGameStats e UIManager regulam as regras de jogo descritas no documento fornecido e controlam as transições de UI. O Timer utiliza um evento para acionar o mecanismo de término de jogo 
