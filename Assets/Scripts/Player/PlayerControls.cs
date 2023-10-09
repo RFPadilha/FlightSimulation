@@ -8,10 +8,10 @@ public class PlayerControls : MonoBehaviour
 {
     public Rigidbody planeBody { get; private set; }
     private PlayerInput playerInput;
-    private PlayerInputActions playerInputActions;
+    public PlayerInputActions playerInputActions { get; private set; }
+    [SerializeField] Transform minimapIcon;
 
-
-    [Header("Variables")]
+    
     [SerializeField] float throttleIncrement = 1f;
     [SerializeField] float maxThrust = 200f;
     [SerializeField] float initialSpeed = 100;
@@ -92,10 +92,14 @@ public class PlayerControls : MonoBehaviour
         UpdateSteering(dt);
         UpdateDrag();
         UpdateAngularDrag();
+        UpdateMinimapView();
         sound.pitch = throttle/100f;
     }
 
-
+    void UpdateMinimapView()
+    {
+        minimapIcon.rotation = Quaternion.Euler(90, transform.rotation.y, -transform.rotation.z);
+    }
     void UpdateThrust()
     {
         if (planeBody.velocity.magnitude < maximumSpeed / 3.6f)

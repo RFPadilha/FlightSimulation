@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1289185211771702453}
   - component: {fileID: 4827748992889919352}
   - component: {fileID: 1415363082598511326}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 2316710419025052848}
   - component: {fileID: 8765856496560621917}
   - component: {fileID: 5901811720821859893}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2082,7 +2082,7 @@ GameObject:
   - component: {fileID: 1359309462884029409}
   - component: {fileID: 89438235359520813}
   - component: {fileID: 2031469941512616922}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
