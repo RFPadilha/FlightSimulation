@@ -255,9 +255,11 @@ public class PlayerControls : MonoBehaviour
     private void HandleInput()
     {
         float accelerate = playerInputActions.Player.Accelerate.ReadValue<float>();
+        bool stopBraking = (accelerate >= 0 && throttle < 0);
         pitch = playerInputActions.Player.Pitch.ReadValue<float>();
         yaw = playerInputActions.Player.Yaw.ReadValue<float>();
         roll = playerInputActions.Player.Roll.ReadValue<float>();
+
 
         if (accelerate > .1f)
         {
@@ -268,7 +270,12 @@ public class PlayerControls : MonoBehaviour
             throttle -= throttleIncrement;
         }
 
-        throttle = Mathf.Clamp(throttle, 0, 100f);
+        if(stopBraking)
+        {
+            throttle = 0;
+        }
+
+        throttle = Mathf.Clamp(throttle, -50f, 100f);
     }
     public void SwitchToUIMap()
     {

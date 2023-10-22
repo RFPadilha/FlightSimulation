@@ -9,9 +9,10 @@ public class PlayerHUD : MonoBehaviour
     public PlayerControls player;
 
     [SerializeField] TextMeshProUGUI speed;
-    [SerializeField] Slider throttle;
+    [SerializeField] Slider throttleSlider;
     [SerializeField] TextMeshProUGUI altitude;
     [SerializeField] TextMeshProUGUI gForce;
+    [SerializeField] GameObject brakingIndicator;
 
     float prevVelocity = 0f;
     float prevThrottle = 0f;
@@ -30,9 +31,9 @@ public class PlayerHUD : MonoBehaviour
 
     void Start()
     {
-
+        brakingIndicator.SetActive(false);
         speed.text = "0km/h";
-        throttle.value = player.throttle / 100f;
+        throttleSlider.value = player.throttle / 100f;
         altitude.text = "0m";
         gForce.text = player.localGForce.magnitude.ToString("F1") + "G";
         prevGForce = player.localGForce.magnitude;
@@ -52,8 +53,17 @@ public class PlayerHUD : MonoBehaviour
         }
         if (player.throttle != prevThrottle)
         {
-            throttle.value = player.throttle / 100f;
+            if (throttleSlider.value >= 0)
+            {
+                throttleSlider.value = player.throttle / 100f;
+            }
+            else throttleSlider.value = 0;
+
+            if(player.throttle<0) brakingIndicator.SetActive(true);
+            else brakingIndicator.SetActive(false);
+
             prevThrottle = player.throttle;
+
         }
         if (player.transform.position.y != prevAltitude)
         {
